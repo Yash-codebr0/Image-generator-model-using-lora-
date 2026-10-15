@@ -1,0 +1,12 @@
+torch
+torchvision
+diffusers
+transformers
+accelerate
+datasets
+peft
+safetensors
+Pillow
+numpy
+tqdm
+gradio

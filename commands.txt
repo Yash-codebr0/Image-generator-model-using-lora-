@@ -1,0 +1,33 @@
+# Activate the virtual environment
+.\.venv\Scripts\activate
+
+#training
+python -m src.scratch.train --image_dir data/toy/images --captions data/toy/captions.jsonl --output outputs/scratch/model.pt --epochs 5 --batch_size 16 --size 32
+
+#img gen(can change pxls)
+python -m src.scratch.sample --checkpoint outputs/scratch/model.pt --prompt "a futuristic city at night" --target_resolution 1024 --output outputs/scratch/sample_hd_1024.png
+
+## LORA adapter
+#training
+
+python -m src.fine_tune.train_lora `
+  --pretrained_model "runwayml/stable-diffusion-v1-5" `
+  --image_dir data/images `
+  --captions data/captions.jsonl `
+  --output_dir outputs/my_lora `
+  --resolution 512 `
+  --train_batch_size 1 `
+  --max_train_steps 100
+
+#generate 
+python -m src.fine_tune.generate `
+  --base_model "runwayml/stable-diffusion-v1-5" `
+  --lora outputs/my_lora `
+  --prompt "a futuristic city at night, cinematic lighting, 8k wallpaper" `
+  --height 512 `
+  --width 768 `
+  --upscale_factor 2 `
+  --output outputs/generated_lora_hd.png
+
+##with web ui
+python app.py --base_model "runwayml/stable-diffusion-v1-5" --lora outputs/my_lora
