@@ -29,5 +29,7 @@ python -m src.fine_tune.generate `
   --upscale_factor 2 `
   --output outputs/generated_lora_hd.png
 
-##with web ui
-python app.py --base_model "runwayml/stable-diffusion-v1-5" --lora outputs/my_lora
+## with FastAPI Web UI
+python app.py
+# or:
+# uvicorn app:app --reload --port 8000

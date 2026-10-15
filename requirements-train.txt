@@ -1,0 +1,16 @@
+# Training & Local Inference Requirements (PyTorch / GPU)
+torch
+torchvision
+diffusers
+transformers
+accelerate
+datasets
+peft
+safetensors
+Pillow
+numpy
+tqdm
+fastapi
+uvicorn
+pydantic
+requests

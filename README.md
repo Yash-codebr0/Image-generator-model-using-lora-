@@ -68,10 +68,22 @@ python -m src.fine_tune.generate \
   --output outputs/generated_hd.png
 ```
 
-Launch the Web UI:
+Launch the FastAPI Web UI:
 
 ```bash
-python app.py --base_model "runwayml/stable-diffusion-v1-5" --lora outputs/my_lora
+python app.py
+# or
+uvicorn app:app --reload --port 8000
+```
+
+Open `http://localhost:8000` in your browser. API documentation is available at `http://localhost:8000/docs`.
+
+### Deploy to Vercel
+
+This project includes `vercel.json` and `api/index.py` configured for Vercel Serverless:
+
+```bash
+vercel deploy
 ```
 
 ## Educational scratch model
