@@ -1,9 +1,11 @@
-import sys
-from pathlib import Path
+# api/index.py
 
-# Add project root directory to sys.path so app can be imported
-root_path = Path(__file__).resolve().parent.parent
-if str(root_path) not in sys.path:
-    sys.path.insert(0, str(root_path))
+import sys
+import os
+
+sys.path.insert(
+    0,
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
 
 from app import app
